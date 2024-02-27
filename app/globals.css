@@ -67,11 +67,14 @@
 }
 
 @layer base {
+  html {
+    @apply h-full;
+  }
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
-    @apply bg-gray-100;
+    @apply bg-background text-foreground h-full;
+    @apply relative bg-grey-0;
   }
 }

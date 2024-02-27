@@ -1,80 +1,164 @@
 import type { Config } from "tailwindcss"
 
 const config = {
-  darkMode: ["class"],
-  content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
-  prefix: "",
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+    darkMode: ["class"],
+    content: [
+        "./pages/**/*.{ts,tsx}",
+        "./components/**/*.{ts,tsx}",
+        "./app/**/*.{ts,tsx}",
+        "./src/**/*.{ts,tsx}",
+    ],
+    prefix: "",
+    theme: {
+        container: {
+            center: true,
+            padding: "2rem",
+            screens: {
+                "2xl": "1400px",
+            },
+        },
+        extend: {
+            colors: {
+                border: "hsl(var(--border))",
+                input: "hsl(var(--input))",
+                ring: "hsl(var(--ring))",
+                background: "hsl(var(--background))",
+                foreground: "hsl(var(--foreground))",
+                primary: {
+                    DEFAULT: "hsl(var(--primary))",
+                    foreground: "hsl(var(--primary-foreground))",
+                },
+                secondary: {
+                    DEFAULT: "hsl(var(--secondary))",
+                    foreground: "hsl(var(--secondary-foreground))",
+                },
+                destructive: {
+                    DEFAULT: "hsl(var(--destructive))",
+                    foreground: "hsl(var(--destructive-foreground))",
+                },
+                muted: {
+                    DEFAULT: "hsl(var(--muted))",
+                    foreground: "hsl(var(--muted-foreground))",
+                },
+                accent: {
+                    DEFAULT: "hsl(var(--accent))",
+                    foreground: "hsl(var(--accent-foreground))",
+                },
+                popover: {
+                    DEFAULT: "hsl(var(--popover))",
+                    foreground: "hsl(var(--popover-foreground))",
+                },
+                card: {
+                    DEFAULT: "hsl(var(--card))",
+                    foreground: "hsl(var(--card-foreground))",
+                },
+                grey: {
+                    0: "#F7F7FF",
+                    100: "#F0F0FD",
+                    200: "#E5E5F7",
+                    300: "#D5D5EB",
+                    400: "#C0BFD8",
+                    500: "#A6A5BF",
+                    600: "#8988A1",
+                    700: "#6A6A81",
+                    800: "#4D4D60",
+                    900: "#323240",
+                },
+                purple: {
+                    0: "#F2F0FF",
+                    100: "#EBE8FF",
+                    200: "#DBD5FF",
+                    300: "#C0B6FE",
+                    400: "#9B8CFB",
+                    500: "#715DF6",
+                    600: "#4B33EA",
+                    700: "#2E15D0",
+                    800: "#19059D",
+                    900: "#0B0052",
+                },
+                blue: {
+                    0: "#F0F1FF",
+                    100: "#E8EAFF",
+                    200: "#D5D9FF",
+                    300: "#B6BDFE",
+                    400: "#8C97FB",
+                    500: "#5D6CF6",
+                    600: "#3345EA",
+                    700: "#1528D0",
+                    800: "#05149D",
+                    900: "#000852",
+                },
+                red: {
+                    0: "#FFF5F5",
+                    100: "#FFDADA",
+                    200: "#FFA1A1",
+                    300: "#FE7777",
+                    400: "#FB5050",
+                    500: "#F53030",
+                    600: "#E71818",
+                    700: "#CB0909",
+                    800: "#930101",
+                    900: "#400000",
+                },
+                green: {
+                    0: "#F2FCF5",
+                    100: "#DBF9E1",
+                    200: "#C0F2CB",
+                    300: "#A5E7B3",
+                    400: "#8AD79A",
+                    500: "#70C282",
+                    600: "#38924C",
+                    700: "#41824F",
+                    800: "#2B5935",
+                    900: "#162E1B",
+                },
+                yellow: {
+                    0: "#FFF8ED",
+                    100: "#FFEACA",
+                    200: "#FFDBA5",
+                    300: "#FECC80",
+                    400: "#FBBC5F",
+                    500: "#F5AE42",
+                    600: "#E89D2C",
+                    700: "#CD861C",
+                    800: "#976110",
+                    900: "#472E07",
+                },
+                cyan: {
+                    0: "#F7F7F7",
+                    100: "#EFF7F6",
+                    200: "#DCF7F4",
+                    300: "#BCF6EF",
+                    400: "#90F3E8",
+                    500: "#60EDDD",
+                    600: "#34E0CC",
+                    700: "#15C5B0",
+                    800: "#058E7E",
+                    900: "#003D36",
+                },
+            },
+            borderRadius: {
+                lg: "var(--radius)",
+                md: "calc(var(--radius) - 2px)",
+                sm: "calc(var(--radius) - 4px)",
+            },
+            keyframes: {
+                "accordion-down": {
+                    from: { height: "0" },
+                    to: { height: "var(--radix-accordion-content-height)" },
+                },
+                "accordion-up": {
+                    from: { height: "var(--radix-accordion-content-height)" },
+                    to: { height: "0" },
+                },
+            },
+            animation: {
+                "accordion-down": "accordion-down 0.2s ease-out",
+                "accordion-up": "accordion-up 0.2s ease-out",
+            },
+        },
     },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
+    plugins: [require("tailwindcss-animate")],
 } satisfies Config
 
 export default config
