@@ -1,32 +1,15 @@
 import Header from "./lib/components/header"
-import CartEmpty from "./lib/components/cart-empty"
 import { Metadata } from "next"
-import { Button } from "@/components/ui/button"
-import CartItem from "@/components/cart-item"
 import CartContent from "./lib/components/cart-content"
+import { getCartItems } from "@/services/cart"
 
 export const metadata: Metadata = {
   title: "Корзина",
   description: "Страница корзины",
 }
 
-const Page = () => {
-  const cartItems = [
-    {
-      id: 1,
-      name: "Name and description",
-      quantity: 10,
-      cost: 5000,
-      bonus: 10,
-    },
-    {
-      id: 2,
-      name: "Name and description",
-      quantity: 10,
-      cost: 5000,
-      bonus: 10,
-    },
-  ]
+const Page = async () => {
+  const cartItems = await getCartItems()
 
   return (
     <>
