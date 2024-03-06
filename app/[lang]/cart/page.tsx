@@ -1,7 +1,7 @@
 import Header from "./lib/components/header"
 import { Metadata } from "next"
 import CartContent from "./lib/components/cart-content"
-import { getCartItems } from "@/services/cart"
+import { getCartPageLocales } from "@/services/cart"
 
 export const metadata: Metadata = {
   title: "Корзина",
@@ -9,13 +9,13 @@ export const metadata: Metadata = {
 }
 
 const Page = async () => {
-  const cartItems = await getCartItems()
+  const locales = await getCartPageLocales()
 
   return (
     <>
-      <Header />
+      <Header title={locales.title} />
       <main className="mb-16 h-full py-2">
-        <CartContent cartItems={cartItems} />
+        <CartContent locales={locales} />
       </main>
     </>
   )

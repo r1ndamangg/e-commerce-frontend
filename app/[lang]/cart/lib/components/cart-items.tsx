@@ -1,13 +1,19 @@
+"use client"
+
 import CartItem from "@/components/cart-item"
 import { Button } from "@/components/ui/button"
+import { getRUProductCount } from "@/lib/helpers"
 import { ICartItem } from "@/types/cart-item"
-import { FC } from "react"
+import { useParams } from "next/navigation"
 
 interface Props {
   items: ICartItem[]
+  button: string
 }
 
-const CartItems: FC<Props> = ({ items }) => {
+const CartItems = ({ items, button }: Props) => {
+  const { lang } = useParams()
+
   const totalCost = items.reduce((acc, item) => acc + item.cost, 0)
 
   return (
@@ -19,13 +25,17 @@ const CartItems: FC<Props> = ({ items }) => {
       </div>
       <div className="z-10 flex flex-col gap-4 bg-white p-4">
         <div className="flex justify-between">
-          <span className="text-lg font-bold">{items.length} товара</span>
+          <span className="text-lg font-bold">
+            {lang === "ru"
+              ? getRUProductCount(items.length)
+              : `${items.length} тауар`}
+          </span>
           <span className="text-lg font-bold">
             {totalCost.toLocaleString("ru")} тг
           </span>
         </div>
         <Button size="m" className="w-full">
-          Оформить заказ
+          {button}
         </Button>
       </div>
     </div>
