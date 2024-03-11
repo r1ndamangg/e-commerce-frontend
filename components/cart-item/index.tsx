@@ -1,7 +1,6 @@
 import { TrashIcon, MinusIcon, PlusIcon } from "@heroicons/react/16/solid"
 import Image from "next/image"
 import IconButton from "./icon-button"
-import { FC } from "react"
 
 interface Props {
   name: string
@@ -10,7 +9,7 @@ interface Props {
   bonus?: number
 }
 
-const CartItem: FC<Props> = ({ cost, name, quantity, bonus }) => {
+const CartItem: React.FC<Props> = ({ cost, name, quantity, bonus }) => {
   return (
     <div className="flex gap-2 bg-white">
       <div className="relative">

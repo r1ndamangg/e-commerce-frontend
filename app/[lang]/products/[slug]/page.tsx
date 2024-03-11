@@ -1,5 +1,5 @@
 const Page = () => {
-    return <div>Products page</div>
+  return <div>Product by slug</div>
 }
 
 export default Page
