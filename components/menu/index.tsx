@@ -41,7 +41,7 @@ const menuItems = [
   {
     icon: <RectangleGroupIcon width={24} />,
     name: "products",
-    href: "/products",
+    href: "/catalog",
     label: "Каталог",
   },
   {

@@ -14,3 +14,18 @@ export function getRUProductCount(number: number) {
     return `${number} товаров`
   }
 }
+
+export function splitArrayByElementCount<T>(
+  originalArray: T[],
+  n: number
+): T[][] {
+  const result = []
+
+  for (let i = 0; i < originalArray.length; i += n) {
+    // Use slice to create subarrays of N elements
+    const part = originalArray.slice(i, i + n)
+    result.push(part)
+  }
+
+  return result
+}

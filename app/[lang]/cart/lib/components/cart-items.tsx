@@ -1,6 +1,6 @@
 "use client"
 
-import { CartItem } from "@/components"
+import CartItem from "@/components/cart-item"
 import { Button } from "@/components/ui/button"
 import { getRUProductCount } from "@/lib/helpers"
 import { ICartItem } from "@/types/cart-item"

@@ -8,8 +8,8 @@ export const metadata: Metadata = {
   description: "Страница корзины",
 }
 
-const Page = async () => {
-  const locales = await getCartPageLocales()
+const Page = async ({ params }: PageWithParams) => {
+  const locales = await getCartPageLocales(params.lang)
 
   return (
     <>

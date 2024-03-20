@@ -1,13 +1,12 @@
-import SearchInput from "@/components/search-input"
 import PageHeader from "./lib/components/page-header"
-import CategoryList from "./lib/components/category-list"
+import Categories from "./lib/components/categories"
 
 const Page = () => {
   return (
     <>
-      <PageHeader />
+      <PageHeader placeholder="Поиск по каталогу" />
       <div className="py-2">
-        <CategoryList />
+        <Categories />
       </div>
     </>
   )

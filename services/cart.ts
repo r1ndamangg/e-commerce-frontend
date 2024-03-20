@@ -19,12 +19,16 @@ export const getCartItems = async () => {
   ]
 }
 
-export const getCartPageLocales = async () => {
-  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/cart-page`, {
-    headers: {
-      Authorization: `Bearer ${process.env.WEB_APP_TOKEN}`,
-    },
-  })
+export const getCartPageLocales = async (locale = "ru") => {
+  const result = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/cart-page?locale=${locale}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.WEB_APP_TOKEN}`,
+      },
+    }
+  )
   const json = await result.json()
+
   return json.data.attributes
 }

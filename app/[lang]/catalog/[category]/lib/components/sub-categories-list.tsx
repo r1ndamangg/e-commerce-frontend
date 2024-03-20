@@ -4,11 +4,18 @@ import Link from "next/link"
 
 interface Props {
   items: ProductCategory[]
+  selected: string
 }
 
-const CategoryList: React.FC<Props> = ({ items }) => {
+const SubCategoriesList: React.FC<Props> = ({ items, selected }) => {
   return (
     <ul className="flex flex-col gap-0.5">
+      <li className="bg-white p-4 font-extrabold text-blue-600">{selected}</li>
+      <li className="bg-white p-4">
+        <Link href={`/catalog`}>
+          <CategoryItem name="Все товары" />
+        </Link>
+      </li>
       {items.map(({ name, slug, icon }) => (
         <li key={slug} className="bg-white p-4">
           <Link href={`catalog/${slug}`}>
@@ -20,4 +27,4 @@ const CategoryList: React.FC<Props> = ({ items }) => {
   )
 }
 
-export default CategoryList
+export default SubCategoriesList
