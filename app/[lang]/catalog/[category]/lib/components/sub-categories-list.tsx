@@ -18,7 +18,7 @@ const SubCategoriesList: React.FC<Props> = ({ items, selected }) => {
       </li>
       {items.map(({ name, slug, icon }) => (
         <li key={slug} className="bg-white p-4">
-          <Link href={`catalog/${slug}`}>
+          <Link href={`/catalog/${slug}`}>
             <CategoryItem name={name} icon={icon?.url} />
           </Link>
         </li>

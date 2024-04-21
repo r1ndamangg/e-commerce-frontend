@@ -20,7 +20,7 @@ const Categories: React.FC<Props> = ({ items }) => {
 
   return (
     <div className="bg-white">
-      <Carousel className="w-full" plugins={[WheelGesturesPlugin()]}>
+      <Carousel className="h-20 w-full" plugins={[WheelGesturesPlugin()]}>
         <CarouselContent>
           {categoryGroups.map(group => (
             <CarouselItem>
