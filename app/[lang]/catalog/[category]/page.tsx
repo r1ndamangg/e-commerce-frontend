@@ -5,7 +5,7 @@ const Page = ({ params }: PageWithParams) => {
   return (
     <>
       <PageHeader placeholder="Поиск по каталогу" backButton />
-      <div className="py-2">
+      <div className="mb-16 h-full overflow-scroll py-2">
         <PageContent slug={params.category} />
       </div>
     </>

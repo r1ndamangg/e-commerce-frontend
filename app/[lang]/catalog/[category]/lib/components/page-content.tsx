@@ -5,6 +5,7 @@ import {
 } from "@/services/categories"
 import SubCategoriesList from "./sub-categories-list"
 import Products from "./products"
+import { Suspense } from "react"
 
 interface Props {
   slug: string
@@ -24,10 +25,14 @@ const PageContent: React.FC<Props> = async ({ slug }) => {
     getChildCategories(slug),
   ])
 
-  return !!subCategories.length ? (
-    <SubCategoriesList items={subCategories} selected={category.name} />
-  ) : (
-    <Products slug={slug} />
+  return (
+    <Suspense fallback={<span>...Loading</span>}>
+      {!!subCategories.length ? (
+        <SubCategoriesList items={subCategories} selected={category.name} />
+      ) : (
+        <Products category={category} />
+      )}
+    </Suspense>
   )
 }
 

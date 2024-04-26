@@ -22,11 +22,15 @@ const Categories: React.FC<Props> = ({ items }) => {
     <div className="bg-white">
       <Carousel className="h-20 w-full" plugins={[WheelGesturesPlugin()]}>
         <CarouselContent>
-          {categoryGroups.map(group => (
-            <CarouselItem>
+          {categoryGroups.map((group, index) => (
+            <CarouselItem key={index}>
               <div className="flex w-full">
                 {group.map(category => (
-                  <CategoryItem name={category.name} icon={category.icon.url} />
+                  <CategoryItem
+                    key={category.id}
+                    name={category.name}
+                    icon={category.icon.url}
+                  />
                 ))}
               </div>
             </CarouselItem>

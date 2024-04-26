@@ -1,5 +1,5 @@
-const Page = () => {
-  return <div>Product by slug</div>
+const Page = ({ params }: PageWithParamsProps) => {
+  return <div>Product {params.slug}</div>
 }
 
 export default Page

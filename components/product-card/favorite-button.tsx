@@ -7,7 +7,7 @@ const FavoriteButton = () => {
 
   return (
     <button
-      className="absolute left-0 top-0 bg-transparent px-[6px] py-[3px] text-blue-600 active:scale-125"
+      className="absolute left-1 top-1 bg-transparent px-[6px] py-[3px] text-blue-600 active:scale-125"
       onClick={() => {
         setClicked(clicked => !clicked)
       }}

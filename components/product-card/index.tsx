@@ -11,6 +11,7 @@ interface Props {
   cost: number
   bonuses: number
   favorite?: boolean
+  name: string
   size?: "small" | "medium"
 }
 
@@ -19,25 +20,15 @@ const ProductCard: React.FC<Props> = ({
   bonuses,
   cost,
   favorite,
+  name,
   size = "medium",
 }) => {
-  const imageSizes = {
-    small: {
-      width: 104,
-      height: 104,
-    },
-    medium: {
-      width: 164,
-      height: 164,
-    },
-  }
-
   const isSmall = size === "small"
 
   const isMedium = size === "medium"
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 bg-white">
       <div
         className={clsx(
           {
@@ -48,9 +39,9 @@ const ProductCard: React.FC<Props> = ({
         )}
       >
         <Image
-          width={imageSizes[size].width}
-          height={imageSizes[size].height}
-          alt="Product card"
+          alt={name}
+          style={{ objectFit: "contain", padding: 24 }}
+          fill
           src={src}
         />
         <FavoriteButton />
