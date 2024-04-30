@@ -57,7 +57,9 @@ export const getParentCategories = async (): Promise<ParentCategory[]> => {
   }
 }
 
-export const getChildCategories = async (slug: string) => {
+export const getChildCategories = async (
+  slug: string
+): Promise<ProductCategory[]> => {
   try {
     const response = await fetch(
       `${apiURL}/product-categories/child-categories/${slug}`,

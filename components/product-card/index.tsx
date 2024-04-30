@@ -46,11 +46,13 @@ const ProductCard: React.FC<Props> = ({
         />
         <FavoriteButton />
       </div>
-      {isMedium && <p>Name and short description</p>}
+      {isMedium && <p>{name}</p>}
       <div className="flex items-center justify-between gap-2">
         <div className="flex flex-col gap-1">
           <p className="font-bold leading-4">{cost} тг.</p>
-          <Badge className="self-start">{normalizePrice(bonuses)}</Badge>
+          <Badge className="self-start rounded-full px-2 py-0.5">
+            {normalizePrice(bonuses)}
+          </Badge>
         </div>
         {isMedium && (
           <button className="shrink-0 rounded-lg bg-blue-0 p-2">

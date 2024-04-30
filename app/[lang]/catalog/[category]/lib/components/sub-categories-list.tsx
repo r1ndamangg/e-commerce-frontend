@@ -5,14 +5,22 @@ import Link from "next/link"
 interface Props {
   items: ProductCategory[]
   selected: string
+  slug: string
 }
 
-const SubCategoriesList: React.FC<Props> = ({ items, selected }) => {
+const SubCategoriesList: React.FC<Props> = ({ items, selected, slug }) => {
   return (
     <ul className="flex flex-col gap-0.5">
       <li className="bg-white p-4 font-extrabold text-blue-600">{selected}</li>
       <li className="bg-white p-4">
-        <Link href={`/catalog`}>
+        <Link
+          href={{
+            href: `/catalog/${slug}`,
+            query: {
+              show: true,
+            },
+          }}
+        >
           <CategoryItem name="Все товары" />
         </Link>
       </li>

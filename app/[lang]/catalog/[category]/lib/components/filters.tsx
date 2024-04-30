@@ -27,18 +27,6 @@ const Filters = ({ pagination, categoryName }: Props) => {
         <Badge closable className="flex-shrink-0" variant="outline">
           Фильтр 1, +1
         </Badge>
-        <Badge className="flex-shrink-0" variant="outline">
-          Фильтр 1, +1
-        </Badge>
-        <Badge className="flex-shrink-0" variant="outline">
-          Фильтр 1, +1
-        </Badge>
-        <Badge className="flex-shrink-0" variant="outline">
-          Фильтр 1, +1
-        </Badge>
-        <Badge className="flex-shrink-0" variant="outline">
-          Фильтр 1, +1
-        </Badge>
       </div>
     </div>
   )
