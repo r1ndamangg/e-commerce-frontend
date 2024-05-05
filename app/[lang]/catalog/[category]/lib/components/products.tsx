@@ -1,21 +1,28 @@
 import ProductCard from "@/components/product-card"
 import { getFileUrl } from "@/lib/assets"
-import { getProducts } from "@/services/products"
+import { getProductsByCategories } from "@/services/products"
 import { ProductCategory } from "@/types/category"
 import Filters from "./filters"
 import Link from "next/link"
+import ProductNotFound from "@/components/product-not-found"
+import EmptyState from "./empty-state"
 interface Props {
-  category: ProductCategory
+  categories: ProductCategory[]
+  title: string
 }
 
-const Products = async ({ category }: Props) => {
-  const { data: products, meta } = await getProducts(category.slug)
+const Products = async ({ categories, title }: Props) => {
+  const { data: products, meta } = await getProductsByCategories(
+    categories.map(({ slug }) => slug)
+  )
+
+  if (!products.length) return <EmptyState />
 
   return (
     <div className="h-full flex-col gap-2">
-      <Filters categoryName={category.name} pagination={meta.pagination} />
+      <Filters categoryName={title} pagination={meta.pagination} />
       <div className="grid grid-cols-2 gap-y-2 bg-white p-4">
-        {products.map(({ id, bonusPrice, name, price, slug, images }) => (
+        {products.map(({ bonusPrice, name, price, slug, images }) => (
           <Link href={`/products/${slug}`} key={slug}>
             <ProductCard
               size="medium"

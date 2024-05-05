@@ -1,20 +1,66 @@
 import { Product } from "@/types/product"
 import { apiURL } from "./config"
 
-export const getProducts = async (
-  slug?: string
+export const getProductsByCategories = async (
+  slugs?: string[]
 ): Promise<RequestWithPagination<Product>> => {
-  const filters = slug
-    ? `?filters[product_category][slug][$eq]=${slug}&fields[0]=name&fields[1]=price&fields[2]=slug&fields[3]=bonusPrice&populate[images][fields][0]=url`
-    : ""
+  try {
+    const params = new URLSearchParams()
+    params.set("fields[0]", "name")
+    params.set("fields[1]", "price")
+    params.set("fields[2]", "slug")
+    params.set("fields[3]", "bonusPrice")
+    params.set("populate[images][fields][0]", "url")
+    if (slugs) {
+      slugs.forEach((slug, index) => {
+        params.set(`filters[product_category][slug][$in][${index}]`, slug)
+      })
+    }
+    const filters = slugs ? `?${params.toString()}` : ""
 
-  const response = await fetch(`${apiURL}/products${filters}`, {
-    headers: {
-      Authorization: `Bearer ${process.env.WEB_APP_TOKEN}`,
-    },
-  })
+    const response = await fetch(`${apiURL}/products${filters}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.WEB_APP_TOKEN}`,
+      },
+    })
 
-  const json = await response.json()
+    const json = await response.json()
 
-  return json
+    return json
+  } catch (e) {
+    if (e instanceof Error) {
+      throw e
+    }
+
+    throw new Error(`Could not get Products. Reason ${JSON.stringify(e)}`)
+  }
+}
+
+export const getProductBySlug = async (slug: string): Promise<Product> => {
+  console.log(slug)
+
+  try {
+    const response = await fetch(
+      `${apiURL}/products/filters[slug][$eq]=${slug}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.WEB_APP_TOKEN}`,
+        },
+      }
+    )
+
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    const json: RequestWithPagination<Product> = await response.json()
+
+    return json.data[0]
+  } catch (e) {
+    if (e instanceof Error) {
+      throw e
+    }
+
+    throw new Error(`Could not get Product. Reason ${JSON.stringify(e)}`)
+  }
 }

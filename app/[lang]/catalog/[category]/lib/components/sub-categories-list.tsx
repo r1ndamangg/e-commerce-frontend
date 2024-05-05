@@ -13,14 +13,7 @@ const SubCategoriesList: React.FC<Props> = ({ items, selected, slug }) => {
     <ul className="flex flex-col gap-0.5">
       <li className="bg-white p-4 font-extrabold text-blue-600">{selected}</li>
       <li className="bg-white p-4">
-        <Link
-          href={{
-            href: `/catalog/${slug}`,
-            query: {
-              show: true,
-            },
-          }}
-        >
+        <Link href={`/catalog/${slug}/all`}>
           <CategoryItem name="Все товары" />
         </Link>
       </li>

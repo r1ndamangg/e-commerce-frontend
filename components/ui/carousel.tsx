@@ -4,7 +4,6 @@ import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
 
-import { WheelGesturesPlugin } from "embla-carousel-wheel-gestures"
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"

@@ -1,5 +1,5 @@
 import SearchInput from "@/components/search-input"
-import BackButton from "./back-button"
+import BackLink from "./back-link"
 
 interface Props {
   placeholder: string
@@ -9,7 +9,7 @@ interface Props {
 const PageHeader: React.FC<Props> = ({ placeholder, backButton }) => {
   return (
     <div className="flex h-16 items-center gap-4 bg-white p-2">
-      {backButton && <BackButton />}
+      {backButton && <BackLink />}
       <SearchInput placeholder={placeholder} />
     </div>
   )
