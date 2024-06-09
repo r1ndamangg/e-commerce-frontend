@@ -3,6 +3,7 @@ export {}
 declare global {
   interface PageWithParamsProps {
     params: Record<string, string>
+    searchParams: Record<string, string>
   }
 
   interface ResponseMeta {

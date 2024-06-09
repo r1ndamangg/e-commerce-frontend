@@ -5,7 +5,6 @@ import {
 } from "@/services/categories"
 import PageHeader from "../lib/components/page-header"
 import PageContent from "./lib/components/page-content"
-import ProductNotFound from "@/components/product-not-found"
 
 export async function generateStaticParams() {
   const categories = await getParentCategories()
@@ -20,6 +19,8 @@ const Page = async ({ params }: PageWithParamsProps) => {
     getCategoryBySlug(params.category),
     getChildCategories(params.category),
   ])
+
+  console.log(category, subCategories)
 
   return (
     <>

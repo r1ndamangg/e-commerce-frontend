@@ -8,7 +8,13 @@ import { ArrowLeft, ArrowRight } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import React from "react"
+import React, {
+  PropsWithChildren,
+  useCallback,
+  useEffect,
+  useState,
+} from "react"
+import { EmblaCarouselType } from "embla-carousel"
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -194,6 +200,90 @@ const CarouselItem = React.forwardRef<
   )
 })
 CarouselItem.displayName = "CarouselItem"
+
+type UseDotButtonType = {
+  selectedIndex: number
+  scrollSnaps: number[]
+  onDotButtonClick: (index: number) => void
+}
+
+const useDotButton = (
+  emblaApi: EmblaCarouselType | undefined
+): UseDotButtonType => {
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
+
+  const onDotButtonClick = useCallback(
+    (index: number) => {
+      if (!emblaApi) return
+      emblaApi?.scrollTo(index)
+    },
+    [emblaApi]
+  )
+
+  const onInit = useCallback((emblaApi: EmblaCarouselType) => {
+    setScrollSnaps(emblaApi.scrollSnapList())
+  }, [])
+
+  const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [])
+
+  useEffect(() => {
+    if (!emblaApi) return
+
+    onInit(emblaApi)
+    onSelect(emblaApi)
+    emblaApi.on("reInit", onInit)
+    emblaApi.on("reInit", onSelect)
+    emblaApi.on("select", onSelect)
+  }, [emblaApi, onInit, onSelect])
+
+  return {
+    selectedIndex,
+    scrollSnaps,
+    onDotButtonClick,
+  }
+}
+
+type PropType = PropsWithChildren<
+  React.DetailedHTMLProps<
+    React.ButtonHTMLAttributes<HTMLButtonElement>,
+    HTMLButtonElement
+  >
+>
+
+export const DotButton: React.FC<PropType> = props => {
+  const { children, ...restProps } = props
+
+  return (
+    <button type="button" {...restProps}>
+      {children}
+    </button>
+  )
+}
+
+export const CarouselDots = () => {
+  const { api } = useCarousel()
+  const { selectedIndex, scrollSnaps, onDotButtonClick } = useDotButton(api)
+
+  return (
+    <div className="absolute bottom-2 flex h-4 w-full justify-center">
+      <div className="flex gap-2 py-2">
+        {scrollSnaps.map((_, index) => (
+          <DotButton
+            key={index}
+            onClick={() => onDotButtonClick(index)}
+            className={cn(
+              "h-1.5 w-1.5 rounded-full",
+              selectedIndex === index ? "bg-blue-600" : "bg-blue-300"
+            )}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
 
 const CarouselPrevious = React.forwardRef<
   HTMLButtonElement,

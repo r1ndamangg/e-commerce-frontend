@@ -1,13 +1,12 @@
 import { ArrowLeftIcon } from "@heroicons/react/16/solid"
 import Link from "next/link"
+import { ComponentProps } from "react"
 
-interface Props {
-  href: string
-}
+type Props = ComponentProps<typeof Link>
 
-const BackButton = ({ href }: Props) => {
+const BackButton = (props: Props) => {
   return (
-    <Link href={href}>
+    <Link {...props}>
       <ArrowLeftIcon width={24} />
     </Link>
   )

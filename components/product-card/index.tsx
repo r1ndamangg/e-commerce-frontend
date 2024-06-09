@@ -1,7 +1,7 @@
 "use client"
 import { normalizePrice } from "@/lib/normalizers"
 import Image from "next/image"
-import FavoriteButton from "./favorite-button"
+import FavoriteButton from "@/components/favorite-button"
 import { Badge } from "../ui/badge"
 import clsx from "clsx"
 import { ShoppingBagIcon } from "@heroicons/react/24/outline"
@@ -44,7 +44,7 @@ const ProductCard: React.FC<Props> = ({
           fill
           src={src}
         />
-        <FavoriteButton />
+        <FavoriteButton size="sm" className="absolute left-1 top-1" />
       </div>
       {isMedium && <p>{name}</p>}
       <div className="flex items-center justify-between gap-2">

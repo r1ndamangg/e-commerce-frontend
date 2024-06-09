@@ -1,12 +1,15 @@
 import PageHeader from "./lib/components/page-header"
-import Categories from "./lib/components/categories"
+import PageContent from "./lib/components/page-content"
+import { getParentCategories } from "@/services/categories"
 
-const Page = () => {
+const Page = async () => {
+  const categories = await getParentCategories()
+
   return (
     <>
       <PageHeader placeholder="Поиск по каталогу" />
       <div className="py-2">
-        <Categories />
+        <PageContent categories={categories} />
       </div>
     </>
   )

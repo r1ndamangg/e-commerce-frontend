@@ -8,14 +8,7 @@ const ShowProductsLink = () => {
 
   return (
     <li className="bg-white p-4">
-      <Link
-        href={{
-          href: `/catalog/${params.slug}`,
-          query: {
-            show: true,
-          },
-        }}
-      >
+      <Link href={`/catalog/${params.slug}`}>
         <CategoryItem name="Все товары" />
       </Link>
     </li>

@@ -1,20 +1,52 @@
+"use client"
 import ProductCard from "@/components/product-card"
 import { getFileUrl } from "@/lib/assets"
-import { getProductsByCategories } from "@/services/products"
+import { searchProducts } from "@/actions"
 import { ProductCategory } from "@/types/category"
 import Filters from "./filters"
 import Link from "next/link"
-import ProductNotFound from "@/components/product-not-found"
 import EmptyState from "./empty-state"
+import { useState, useEffect } from "react"
+import Loading from "@/components/loading"
+
 interface Props {
   categories: ProductCategory[]
   title: string
+  search?: string
 }
 
-const Products = async ({ categories, title }: Props) => {
-  const { data: products, meta } = await getProductsByCategories(
-    categories.map(({ slug }) => slug)
-  )
+const Products = ({ categories, title, search }: Props) => {
+  const [productsData, setProductsData] =
+    useState<Awaited<ReturnType<typeof searchProducts>>>()
+
+  const [error, setError] = useState<string>("")
+
+  useEffect(() => {
+    const getProductsData = async () => {
+      try {
+        const data = await searchProducts(
+          categories.map(({ slug }) => slug),
+          search
+        )
+        setProductsData(data)
+      } catch (e) {
+        if (e instanceof Error) {
+          setError(e.message)
+          return
+        }
+
+        setError(JSON.stringify(e))
+      }
+    }
+
+    getProductsData()
+  }, [categories, search])
+
+  if (error) return <div>{error}</div>
+
+  if (!productsData) return <Loading />
+
+  const { data: products, meta } = productsData
 
   if (!products.length) return <EmptyState />
 

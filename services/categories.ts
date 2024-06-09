@@ -5,6 +5,7 @@ export const getCategoryBySlug = async (
   slug: string
 ): Promise<ProductCategory> => {
   try {
+    console.log("slug", slug)
     const response = await fetch(
       `${apiURL}/product-categories/category-by-slug/${slug}`,
       {
