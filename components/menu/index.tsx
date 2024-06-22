@@ -13,7 +13,7 @@ const Menu: React.FC = () => {
   const pathname = usePathname()
 
   return (
-    <footer className="absolute bottom-0 w-full bg-white px-4 py-2">
+    <footer className="sticky bottom-0 w-full bg-white px-4 py-2">
       <nav>
         <ul className="flex justify-between gap-2">
           {menuItems.map(item => (
