@@ -12,13 +12,13 @@ export const searchProducts = async (
     params.set("fields[0]", "name")
     params.set("fields[1]", "price")
     params.set("fields[2]", "slug")
-    params.set("fields[3]", "bonusPrice")
+    params.set("fields[3]", "bonusAmount")
     params.set("populate[images][fields][0]", "url")
-    if (slugs) {
+    slugs &&
       slugs.forEach((slug, index) => {
         params.set(`filters[product_category][slug][$in][${index}]`, slug)
       })
-    }
+
     search && params.set("filters[name][$containsi]", search)
 
     const filters = slugs ? `?${params.toString()}` : ""

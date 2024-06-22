@@ -1,5 +1,5 @@
 import { getCategoryBySlug, getChildCategories } from "@/services/categories"
-import Products from "../lib/components/products"
+import Products from "@/components/products"
 import PageHeader from "../../lib/components/page-header"
 
 const Page = async ({ params }: PageWithParamsProps) => {

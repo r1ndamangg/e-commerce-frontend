@@ -28,19 +28,22 @@ const ProductCard: React.FC<Props> = ({
   const isMedium = size === "medium"
 
   return (
-    <div className="flex flex-col gap-2 bg-white">
+    <div className="flex flex-col gap-2 bg-white px-2 py-4">
       <div
         className={clsx(
           {
             "h-[104px] w-[104px]": isSmall,
             "h-[164px] w-[164px]": isMedium,
           },
-          "relative rounded-lg bg-grey-0"
+          "relative w-full rounded-lg bg-grey-0"
         )}
       >
         <Image
           alt={name}
-          style={{ objectFit: "contain", padding: 24 }}
+          className={clsx({
+            "p-6": isMedium,
+          })}
+          style={{ objectFit: "contain" }}
           fill
           src={src}
         />

@@ -9,7 +9,6 @@ interface Props {
 }
 
 const ProductVariants = ({ product }: Props) => {
-  console.log(product)
   return (
     <div className="flex flex-col gap-2.5 bg-white p-4 leading-none">
       <div className="flex flex-col gap-2">

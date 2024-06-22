@@ -17,7 +17,7 @@ const Page = async ({ params }: PageWithParamsProps) => {
         {product.images && <ProductCarousel images={product.images} />}
         <ProductTitle product={product} />
         <ProductVariants product={product} />
-        <ProductDescription />
+        <ProductDescription product={product} />
         <ProductCharacteristics product={product} />
         <AddToCart product={product} />
       </main>

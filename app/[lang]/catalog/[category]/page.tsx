@@ -20,8 +20,6 @@ const Page = async ({ params }: PageWithParamsProps) => {
     getChildCategories(params.category),
   ])
 
-  console.log(category, subCategories)
-
   return (
     <>
       <PageHeader placeholder="Поиск по каталогу" backButton />

@@ -48,17 +48,19 @@ const Products = ({ categories, title, search }: Props) => {
 
   const { data: products, meta } = productsData
 
+  console.log(products)
+
   if (!products.length) return <EmptyState />
 
   return (
     <div className="h-full flex-col gap-2">
       <Filters categoryName={title} pagination={meta.pagination} />
-      <div className="grid grid-cols-2 gap-y-2 bg-white p-4">
-        {products.map(({ bonusPrice, name, price, slug, images }) => (
+      <div className="grid grid-cols-2 gap-y-2 py-2">
+        {products.map(({ bonusAmount, name, price, slug, images }) => (
           <Link href={`/products/${slug}`} key={slug}>
             <ProductCard
               size="medium"
-              bonuses={bonusPrice}
+              bonuses={bonusAmount}
               cost={price}
               name={name}
               src={getFileUrl(images?.[0].url || "")}

@@ -6,10 +6,14 @@ export interface Product {
   name: string
   price: number
   slug: string
-  bonusPrice: number
+  bonusAmount?: number
   memory?: Memory
   color?: Color
   images?: { id: number; url: string }[]
+  description: string
+  vendor: {
+    bonusAmount: number
+  }
 }
 
 export interface ProductDetails extends Product {
