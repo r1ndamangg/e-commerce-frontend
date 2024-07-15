@@ -9,7 +9,7 @@ const Page = async () => {
   const categories = await getParentCategories()
 
   return (
-    <div className="mb-16 flex h-full flex-col gap-2 py-2">
+    <div className="flex flex-col gap-2 pb-2">
       <PageHeader />
       <WeaklyOfferBanner />
       <WeaklyOffers />

@@ -1,12 +1,21 @@
 import { FC } from "react"
 import { Button, Input } from "@/components/ui"
 import Link from "next/link"
-
 interface Props {
-  handelClick: () => void
+  onSubmitPhoneLogin: (e: React.FormEvent<HTMLFormElement>) => void
+  phone?: string
+  onChangePhone: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onBlurPhone: (e: React.FocusEvent<HTMLInputElement>) => void
+  onFocusPhone: (e: React.FocusEvent<HTMLInputElement>) => void
 }
 
-export const PhoneLogin: FC<Props> = ({ handelClick }) => {
+export const PhoneLogin: FC<Props> = ({
+  onSubmitPhoneLogin,
+  onChangePhone,
+  onBlurPhone,
+  onFocusPhone,
+  phone,
+}) => {
   return (
     <div className="mx-auto w-full max-w-[306px] rounded-lg bg-white p-4">
       <div className="text-center">
@@ -15,13 +24,21 @@ export const PhoneLogin: FC<Props> = ({ handelClick }) => {
           Ваш номер будет использоваться как логин
         </p>
       </div>
-      <form>
-        <Input type="number" className="mt-10" />
+      <form onSubmit={onSubmitPhoneLogin}>
+        <Input
+          type="tel"
+          className="mt-10"
+          placeholder="+7"
+          onChange={onChangePhone}
+          value={phone}
+          onFocus={onFocusPhone}
+          onBlur={onBlurPhone}
+        />
         <Button
+          disabled={!phone || phone.length < 16}
           variant="primary"
           size="m"
-          className="mt-10 w-full text-base"
-          onClick={handelClick}
+          className="mt-10 w-full text-base disabled:bg-grey-300 disabled:text-grey-600 disabled:opacity-50"
         >
           Войти или зарегистрироваться
         </Button>

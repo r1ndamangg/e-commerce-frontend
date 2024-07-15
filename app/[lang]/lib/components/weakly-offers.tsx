@@ -2,7 +2,7 @@ import ProductCard from "@/components/product-card"
 
 const WeaklyOffers = () => {
   return (
-    <div className="flex h-[180px] w-full grid-rows-1 justify-between overflow-scroll bg-white p-4">
+    <div className="grid w-full grid-cols-3 grid-rows-1 overflow-scroll bg-white p-4">
       <ProductCard
         name="Product Name"
         bonuses={1000}

@@ -1,5 +1,5 @@
 import { ProductCategory } from "@/types/category"
-import { apiURL } from "./config"
+import { apiURL, handleError } from "./config"
 
 export const getCategoryBySlug = async (
   slug: string
@@ -17,14 +17,8 @@ export const getCategoryBySlug = async (
     const json = await response.json()
 
     return json
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
-    }
-
-    throw new Error(
-      `An error occurred while fetching categories. ${JSON.stringify(error)}`
-    )
+  } catch (e) {
+    return handleError(e)
   }
 }
 
@@ -46,14 +40,8 @@ export const getParentCategories = async (): Promise<ParentCategory[]> => {
     const json = await response.json()
 
     return json
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
-    }
-
-    throw new Error(
-      `An error occurred while fetching categories. ${JSON.stringify(error)}`
-    )
+  } catch (e) {
+    return handleError(e)
   }
 }
 
@@ -73,13 +61,7 @@ export const getChildCategories = async (
     const json = await response.json()
 
     return json
-  } catch (error) {
-    if (error instanceof Error) {
-      throw new Error(error.message)
-    }
-
-    throw new Error(
-      `An error occurred while fetching child categories. ${JSON.stringify(error)}`
-    )
+  } catch (e) {
+    return handleError(e)
   }
 }

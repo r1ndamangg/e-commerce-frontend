@@ -76,6 +76,7 @@
   body {
     @apply h-screen max-h-screen bg-background text-foreground;
     @apply relative bg-grey-0;
-    @apply max-w-lg;
+    @apply h-full;
+    @apply flex justify-center;
   }
 }

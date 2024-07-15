@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang={lang}>
       <body className={nunito.className}>
-        <div className="flex h-full flex-col">
+        <div className="flex h-full w-full max-w-md flex-col">
           {children}
           <Menu />
         </div>
