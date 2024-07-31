@@ -48,8 +48,6 @@ const Products = ({ categories, title, search }: Props) => {
 
   const { data: products, meta } = productsData
 
-  console.log(products)
-
   if (!products.length) return <EmptyState />
 
   return (

@@ -10,21 +10,27 @@ import Logout from "./lib/components/logout"
 import Image from "next/image"
 import { Button } from "@/components/ui"
 import { useRouter } from "next/navigation"
+import { useClientSession } from "@/hooks/useSession/useClientSession"
+import { useIsMounted } from "@/hooks/useIsMounted"
 
 const Profile: FC = () => {
-  const isAuthUser = false
+  const { user } = useClientSession()
   const router = useRouter()
+  const isMounted = useIsMounted()
+  const isAuthUser = !!user
+
+  if (!isMounted) return false
 
   return (
     <div className="h-full">
-      <Header title="Профель" balance="5889" isAuthUser />
+      <Header title="Профиль" balance="5889" isAuthUser={!isAuthUser} />
       <section>
         {isAuthUser ? (
           <>
             <UserInfo
-              name="Покер Покеров"
-              phone="+7 777 888 99 00"
-              email="pocker@mail.com"
+              name={`${user.firstName} ${user.lastName}`}
+              phone={user.phoneNumber}
+              email={user.email}
             />
             <ConsentForm />
             <OrderHistory />

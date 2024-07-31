@@ -1,10 +1,11 @@
 import { FC } from "react"
 import Link from "next/link"
+import { formatPhoneNumber } from "@/lib/normalizers"
 
 interface Props {
-  name: string
+  name?: string
   phone: string
-  email: string
+  email?: string
 }
 
 const UserInfo: FC<Props> = ({ name, phone, email }) => {
@@ -20,11 +21,11 @@ const UserInfo: FC<Props> = ({ name, phone, email }) => {
           <p className="text-xs font-medium text-[#6A6A81]">
             Контактный телефон:
           </p>
-          <p className="text-sm font-semibold">{phone}</p>
+          <p className="text-sm font-semibold">{formatPhoneNumber(phone)}</p>
         </div>
         <div>
           <p className="text-xs font-medium text-[#6A6A81]">Email:</p>
-          <p className="text-sm font-semibold">{email}</p>
+          <p className="text-sm font-semibold">{email || "Не заполнено"}</p>
         </div>
         <Link
           href="/profile/edit/info"

@@ -4,15 +4,25 @@ import { PhoneLogin } from "./lib/phone-login"
 import { InputOtp } from "./lib/input-otp"
 import { formatPhoneNumber, normalizePhone } from "@/lib/normalizers"
 import { PasswordInput } from "./lib/password-input"
-import { sendOTP, getUserStatus, register, login } from "@/services/auth"
+import {
+  sendOTP,
+  getUserStatus,
+  register,
+  login,
+  signin,
+} from "@/services/auth"
+import { CreatePasswordInput } from "./lib/create-password-input"
+import { useRouter } from "next/navigation"
 
 const steps = {
   phone: PhoneLogin,
   password: PasswordInput,
+  create_password: CreatePasswordInput,
   code: InputOtp,
 }
 
 const Login: FC = () => {
+  const router = useRouter()
   const [step, setStep] = useState<keyof typeof steps>("phone")
 
   const [phone, setPhone] = useState<string>("")
@@ -36,6 +46,17 @@ const Login: FC = () => {
     }
   }
 
+  const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const phoneNumber = normalizePhone(phone)
+    try {
+      await signin({ identifier: phoneNumber, password })
+      router.push("/profile")
+    } catch (e) {
+      console.error(e)
+    }
+  }
+
   const handleChangePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     setPhone(formatPhoneNumber(value.substring(3)))
@@ -53,7 +74,7 @@ const Login: FC = () => {
     e.preventDefault()
     const phoneNumber = normalizePhone(phone)
     await register({ phone: phoneNumber, password })
-
+    ;("use server")
     await login({ identifier: phoneNumber, password })
   }
 
@@ -63,6 +84,7 @@ const Login: FC = () => {
     <section className="h-full bg-[url('/images/login-bg.png')] bg-cover">
       <div className="flex h-full flex-col justify-center">
         <CurrentStep
+          onSubmitLogin={handleSubmitLogin}
           onSubmitPhoneLogin={handleSubmitPhoneLogin}
           onChangePhone={handleChangePhone}
           phone={phone}

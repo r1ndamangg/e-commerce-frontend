@@ -7,7 +7,7 @@ import { normalizePhone } from "@/lib/normalizers"
 
 interface Props {
   phone: string
-  changeStep: (step: "password") => void
+  changeStep: (step: "create_password") => void
 }
 
 export const InputOtp: FC<Props> = ({ phone, changeStep }) => {
@@ -51,7 +51,7 @@ export const InputOtp: FC<Props> = ({ phone, changeStep }) => {
     })
 
     if (verificationStatus === "approved") {
-      changeStep("password")
+      changeStep("create_password")
     }
   }
 

@@ -81,6 +81,11 @@ export const register = async (body: RegisterRequestBody) => {
   }
 }
 
+type LoginResult = {
+  jwt: string
+  user: {}
+}
+
 export const login = async (body: LoginReguestBody) => {
   try {
     const result = await fetch(`${serviceURL}/local`, {
@@ -89,8 +94,18 @@ export const login = async (body: LoginReguestBody) => {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-cache",
     })
+    const user = await result.json()
+    return user as LoginResult
   } catch (e) {
     handleError(e)
   }
+}
+
+export const signin = async (body: LoginReguestBody) => {
+  return fetch("/api/auth/login", {
+    body: JSON.stringify(body),
+    method: "POST",
+  })
 }

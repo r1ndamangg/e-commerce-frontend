@@ -1,5 +1,4 @@
 import { FC } from "react"
-import Image from "next/image"
 import { Menu } from "@/components/icons"
 
 interface Props {
@@ -11,13 +10,13 @@ interface Props {
 const Header: FC<Props> = ({ title, balance, isAuthUser }) => {
   return (
     <header className="relative bg-white p-4 text-center">
-      <div className="flex items-center gap-4">
+      <div className="flex w-full items-center justify-between gap-4">
         <button>
           <Menu />
         </button>
         <h2>{title}</h2>
         {!isAuthUser && (
-          <div className=" flex items-center gap-3 rounded-lg bg-[#3345EA] p-2">
+          <div className="flex items-center gap-3 rounded-lg bg-[#3345EA] p-2">
             <p className="text-xs text-white">{balance}</p>
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -19,4 +19,13 @@ declare global {
     meta: ResponseMeta
     data: T[]
   }
+
+  interface UserInfo {
+    id: number
+    username: string
+    phoneNumber: string
+    firstName?: string
+    lastName?: string
+    email?: string
+  }
 }
